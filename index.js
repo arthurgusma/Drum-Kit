@@ -4,12 +4,14 @@ for (var i = 0; i < key.length; i++)
   key[i].addEventListener("click", function() {
       var buttonInnerHtml = this.innerHTML;
       playSound(buttonInnerHtml);
+      backgroundPressed(buttonInnerHtml);
   });
 
 
 document.addEventListener("keydown", function(press) {
   var keyPressed = press.key;
   playSound(keyPressed);
+  backgroundPressed(keyPressed);
 });
 
 
@@ -47,3 +49,10 @@ function playSound(event) {
       console.log(event)
     }
   }
+
+function backgroundPressed(key) {
+  var pressedKey = document.querySelector("." + key)
+  pressedKey.classList.add("pressed");
+  setTimeout(function() {  pressedKey.classList.remove("pressed"); }, 100);
+
+}
